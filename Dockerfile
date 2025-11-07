@@ -54,7 +54,7 @@ RUN /root/.venv/bin/pip install gns3-server
 
 # 4. Configuración de Inicio
 EXPOSE 3080
-EXPOSE 5000-10000
+EXPOSE 5000-5350
 
 # El ejecutable se invoca desde el entorno virtual de root
 CMD ["/root/.venv/bin/gns3server", "--host", "0.0.0.0"]
