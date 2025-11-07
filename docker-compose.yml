@@ -1,0 +1,27 @@
+services:
+  gns3srv:
+    # Construye la imagen usando el Dockerfile en el directorio actual
+    build: .
+    
+    container_name: gns3server
+    
+    # 🚨 CRÍTICO: Necesario para uBridge, Dynamips y KVM.
+    privileged: true
+    
+    # Mapeo de puertos
+    ports:
+      - "3080:3080"
+      - "5000-5350:5000-5350"
+      
+    restart: unless-stopped
+      
+    # Definición de volúmenes persistentes
+    volumes:
+      # Configuración del servidor y archivos de proyecto (¡Ahora en /root/.config/GNS3!)
+      - /opt/gns3/config:/root/.config/GNS3
+      # Directorio para tus imágenes de dispositivos (IOS, QCOW2, etc.)
+      - /opt/gns3/images:/opt/gns3/images
+      # Dispositivo KVM para aceleración de QEMU (Host debe ser Linux con KVM)
+      - /dev/kvm:/dev/kvm
+      
+    # NO se especifica 'user', por lo que se usará el usuario por defecto (root)
