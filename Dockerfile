@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /root
 
 # 1. Instalar Dependencias (GNS3 Server, Emuladores y Compilación)
-RUN apt update && \
-    apt install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
         python3-venv \
         python3-pip \
         # Emuladores y virtualización
